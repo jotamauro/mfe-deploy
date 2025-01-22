@@ -2,8 +2,7 @@ name: deploy-container-aws
 
 on:
   push:
-    branches:
-      - master
+    branches: ["master"]
     paths:
       - "./container/**"
 
