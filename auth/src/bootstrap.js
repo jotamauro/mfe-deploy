@@ -23,13 +23,12 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
       if (pathname !== nextPathName) {
         history.push(nextPathName);
       }
-      console.log("Container just navigated");
     },
   };
 };
 
 if (process.env.NODE_ENV === "development") {
-  const devRoot = document.querySelector("#_marketing-dev-root");
+  const devRoot = document.querySelector("#_auth-dev-root");
   if (devRoot) {
     mount(devRoot, { defaultHistory: createBrowserHistory() });
   }
