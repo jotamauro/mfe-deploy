@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 
 import {
   createGenerateClassName,
@@ -17,15 +17,21 @@ const generateClassName = createGenerateClassName({
 });
 
 export const App = () => {
-  console.log(MarketingAppLazy);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
   return (
     <BrowserRouter>
       <StylesProvider generateClassName={generateClassName}>
         <div>
-          <Header />
+          <Header
+            onSignOut={() => setIsSignedIn(false)}
+            isSignedIn={isSignedIn}
+          />
           <Suspense fallback={<Progress />}>
             <Switch>
-              <Route path="/auth" component={AuthAppLazy} />
+              <Route path="/auth">
+                <AuthAppLazy onSignIn={() => setIsSignedIn(true)} />
+              </Route>
               <Route path="/" component={MarketingAppLazy} />
             </Switch>
           </Suspense>

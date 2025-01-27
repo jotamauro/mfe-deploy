@@ -3,12 +3,13 @@ import { mount } from "auth/AuthApp";
 import React, { useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
-export const AuthApp = () => {
+export const AuthApp = ({ onSignIn }) => {
   const history = useHistory();
   const ref = useRef(null);
 
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
+      onSignIn,
       initialPath: history.location.pathname,
       onNavigate: ({ pathname: nextPathName }) => {
         const { pathname } = history.location;
@@ -17,6 +18,9 @@ export const AuthApp = () => {
           history.push(nextPathName);
         }
       },
+      // onSignIn: () => {
+      //   onSignIn();
+      // },
     });
     history.listen(onParentNavigate);
   }, []);
