@@ -18,9 +18,6 @@ export const AuthApp = ({ onSignIn }) => {
           history.push(nextPathName);
         }
       },
-      // onSignIn: () => {
-      //   onSignIn();
-      // },
     });
     history.listen(onParentNavigate);
   }, []);
